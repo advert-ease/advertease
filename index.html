@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TV Controller</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/elusive-webfont.css">
+    <link href="css/animate.css" rel="stylesheet">
+    
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+    
+    <script src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/modernizr.custom.js"></script>
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body data-spy="scroll" data-offset="0" data-target="#navbar-main">
+  
+  
+  	<div id="navbar-main">
+      <!-- Fixed navbar -->
+	    <div class="navbar navbar-default navbar-fixed-top">
+	      <div class="container">
+	       
+	          <a class="navbar-brand hidden-xs hidden-sm" href="#home"><h1>TV Control</h1></a>
+	        </div>
+	     
+	      </div>
+	    </div>
+    </div>
+
+		
+
+    <!-- ==== HEADERWRAP ==== -->
+      <div id="headerwrap" id="home" name="home">
+      <header class="clearfix">
+            <h1 class="animated bounceIn">TV Control</h1>
+            <p class="animated slideInLeft">Toggle TV Input With </p>
+            <p class="animated slideInRight">the button below.</p>
+            <a  id="fun1" class="btn homebtn smoothScroll" onclick="myFunction1()">SPORTS1 Switch to Ad Mode </a>
+            <a  id="fun2" class="btn homebtn smoothScroll" onclick="myFunction2()">SPORTS2 Switch to Ad Mode </a>
+        </header>     
+      </div><!-- /headerwrap -->
+  
+  
+		<div id="footerwrap">
+			<div class="container">
+				
+				<h4 class="fade-up">Copyright</h4>
+			</div>
+		</div>
+		
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase.js"></script>
+<script>
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+  apiKey: "AIzaSyD5-e4ZW7ZupkumHMwmB-8_9M5AQeRdlHY",
+  authDomain: "pi-bla-try.firebaseapp.com",
+  databaseURL: "https://pi-bla-try-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "pi-bla-try",
+  storageBucket: "pi-bla-try.appspot.com",
+  messagingSenderId: "104175823542",
+  appId: "1:104175823542:web:8fad0e5255d5fca4f4d417"
+};
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  db=firebase.database()
+</script>
+<script>
+
+
+function myFunction1() {
+  if (document.getElementById("fun1").innerHTML =="SPORTS1 Switch to Ad Mode")
+  {
+  console.log("HI");
+  document.getElementById("fun1").innerHTML = "SPORTS1 Switch to TV Mode";
+  db.ref().child("pi_cha-status").update({"sports1":true});
+  
+
+  }
+  else
+  {
+  document.getElementById("fun1").innerHTML = "SPORTS1 Switch to Ad Mode";
+  db.ref().child("pi_cha-status").update({"sports1":false});
+  
+  }
+}
+
+function myFunction2() {
+  if (document.getElementById("fun2").innerHTML =="SPORTS2 Switch to Ad Mode")
+  {
+  console.log("HI");
+  document.getElementById("fun2").innerHTML = "SPORTS2 Switch to TV Mode";
+  db.ref().child("pi_cha-status").update({"sports2":true});
+  
+  }
+  else
+  {
+  document.getElementById("fun2").innerHTML = "SPORTS2 Switch to Ad Mode";
+  db.ref().child("pi_cha-status").update({"sports2":false});
+  
+  }
+}
+
+</script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/plugins.js"></script>
+	<script type="text/javascript" src="js/init.js"></script>
+  </body>
+</html>
