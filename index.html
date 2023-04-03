@@ -1,0 +1,197 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body{
+            background-color: black;
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            padding: 20px;
+        }
+
+        h1{
+            margin: 30px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+        }
+
+        tr{
+            border-radius: 10px;
+        }
+
+        th{
+            text-align: left;
+            /* border: 1px solid white; */
+            padding: 10px;
+            background-color: #333;
+            
+        }
+
+        td{
+            /* border: 1px solid white; */
+            padding: 10px;
+        }
+
+        tr:nth-child(1){
+            border-radius: 10px;
+        }
+
+        tr:nth-child(odd){
+            background-color: #333;
+        }
+
+        button{
+            color: white;
+            background-color: teal;
+            border-radius: 5px;
+            padding: 10px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Advertease</h1>
+    <table>
+        <tr>
+            <th>Device name</th>
+            <th>Channel being watched</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td>Pie 1</td>
+            <td>Sports 1</td>
+            <td id="gun1">Ad mode</td>
+            <td><button onclick="myFunction1()" id="fun1">Switch to Tv Mode</button></td>
+        </tr>
+        <tr>
+            <td>Pie 2</td>
+            <td>Sports 2</td>
+            <td id="gun2">Ad mode</td>
+            <td><button onclick="myFunction2()" id="fun2">Switch to Tv Mode</button></td>
+        </tr>
+        <tr>
+            <td>Pie 3</td>
+            <td>Sports 3</td>
+            <td id="gun3">Ad mode</td>
+            <td><button onclick="myFunction3()" id="fun3">Switch to Tv Mode</button></td>
+        </tr>
+        <tr>
+            <td>Pie 4</td>
+            <td>Sports 4</td>
+            <td id="gun4">Ad mode</td>
+            <td><button onclick="myFunction4()" id="fun4">Switch to Tv Mode</button></td>
+        </tr>
+        <tr>
+            <td>Pie 5</td>
+            <td>Sports 5</td>
+            <td id="gun5">Ad mode</td>
+            <td><button onclick="myFunction5()" id="fun5">Switch to Tv Mode</button></td>
+        </tr>
+    </table>
+</body>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyD5-e4ZW7ZupkumHMwmB-8_9M5AQeRdlHY",
+        authDomain: "pi-bla-try.firebaseapp.com",
+        databaseURL: "https://pi-bla-try-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "pi-bla-try",
+        storageBucket: "pi-bla-try.appspot.com",
+        messagingSenderId: "104175823542",
+        appId: "1:104175823542:web:0452362d376672f2f4d417"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.database()
+</script>
+<script>
+
+
+const usersRef = db.ref().child("pi_cha-status")
+
+let usersArr = []
+
+    usersRef.on("child_added", snap => {
+       let user = snap.val();
+       usersArr.push(snap.val())
+    });
+
+
+    function myFunction1() {
+        if (usersArr[0] === false) {
+            document.getElementById("fun1").innerHTML = "Switch to TV Mode";
+            document.getElementById("gun1").innerHTML = "TV Mode";
+            db.ref().child("pi_cha-status").update({ "sports1": true });
+        }
+        else {
+            document.getElementById("fun1").innerHTML = "Switch to Ad Mode";
+            document.getElementById("gun1").innerHTML = "Ad Mode";
+            db.ref().child("pi_cha-status").update({ "sports1": false });
+        }
+    }
+    function myFunction2() {
+        if (usersArr[1] === false) {
+            document.getElementById("fun2").innerHTML = "Switch to TV Mode";
+            document.getElementById("gun2").innerHTML = "TV Mode";
+            db.ref().child("pi_cha-status").update({ "sports2": true });
+        }
+        else {
+            document.getElementById("fun2").innerHTML = "Switch to Ad Mode";
+            document.getElementById("gun2").innerHTML = "Ad Mode";
+            db.ref().child("pi_cha-status").update({ "sports2": false });
+        }
+    }
+    function myFunction3() {
+        if (usersArr[2] === false) {
+            document.getElementById("fun3").innerHTML = "Switch to TV Mode";
+            document.getElementById("gun3").innerHTML = "TV Mode";
+            db.ref().child("pi_cha-status").update({ "sports3": true });
+        }
+        else {
+            document.getElementById("fun3").innerHTML = "Switch to Ad Mode";
+            document.getElementById("gun3").innerHTML = "Ad Mode";
+            db.ref().child("pi_cha-status").update({ "sports3": false });
+        }
+    }
+    function myFunction4() {
+        if (usersArr[3] === false) {
+            document.getElementById("fun4").innerHTML = "Switch to TV Mode";
+            document.getElementById("gun4").innerHTML = "TV Mode";
+            db.ref().child("pi_cha-status").update({ "sports4": true });
+        }
+        else {
+            document.getElementById("fun4").innerHTML = "Switch to Ad Mode";
+            document.getElementById("gun4").innerHTML = "Ad Mode";
+            db.ref().child("pi_cha-status").update({ "sports4": false });
+        }
+    }
+    function myFunction5() {
+        if (usersArr[4] === false) {
+            document.getElementById("fun5").innerHTML = "Switch to TV Mode";
+            document.getElementById("gun5").innerHTML = "TV Mode";
+            db.ref().child("pi_cha-status").update({ "sports5": true });
+        }
+        else {
+            document.getElementById("fun5").innerHTML = "Switch to Ad Mode";
+            document.getElementById("gun5").innerHTML = "Ad Mode";
+            db.ref().child("pi_cha-status").update({ "sports5": false });
+        }
+    }
+
+    
+
+</script>
+</html>
